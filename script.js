@@ -179,4 +179,13 @@ const myFavoriteFootballTeam = {
 };
 
 Object.freeze(myFavoriteFootballTeam);
-const sport = myFavoriteFootballTeam.sport;
+
+// Destructured objects:
+const { sport, team, year, players } = myFavoriteFootballTeam;
+const { coachName } = myFavoriteFootballTeam.headCoach;
+
+// Display Team Info on screen:
+typeOfSport.textContent = sport;
+teamName.textContent = team;
+worldCupYear.textContent = year;
+headCoach.textContent = coachName;
