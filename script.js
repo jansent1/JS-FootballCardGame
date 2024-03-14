@@ -189,3 +189,20 @@ typeOfSport.textContent = sport;
 teamName.textContent = team;
 worldCupYear.textContent = year;
 headCoach.textContent = coachName;
+
+// Show player cards based on dropdown menu selection:
+const setPlayerCards = (arr = players) => {
+  // Map through arr and store name, position etc of each player in a variable:
+  playerCards.innerHTML += arr
+    .map(({ name, position, number, isCaptain, nickname }) => {
+      // Display these variables inside the playercards:
+      `<div class="player-card">
+        <h2>${name} ${isCaptain ? "(Captain)" : ""}</h2>
+        <p>Position: ${position}</p>
+        <p>Number: ${number}</p>
+        <p>Nickname: ${nickname ? nickname : "N/A"} </p>
+      </div>`;
+    })
+    // Remove commas between each player-card:
+    .join("");
+};
