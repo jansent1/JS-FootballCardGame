@@ -1,0 +1,25 @@
+
+Logische opbouw van een script.js bestand:
+
+1. Variabelen declareren:
+Declareer globale variabelen bovenaan het script.
+Gebruik const voor constanten en let voor variabelen die kunnen veranderen.
+Geef de variabelen beschrijvende namen die hun functie duidelijk maken.
+
+2. Functies definiëren:
+Definieer functies voor herbruikbare codeblokken.
+Gebruik camelCase voor de namen van functies.
+Voeg documentatie toe met behulp van comments om de functie te beschrijven.
+
+3. Event listeners toevoegen:
+Voeg event listeners toe aan HTML-elementen om te reageren op gebruikersinteractie.
+Gebruik addEventListener() om event listeners toe te voegen.
+
+4. Code uitvoeren:
+Voer code uit die de functionaliteit van de pagina definieert.
+Gebruik logische conditionals (if, else, switch) om de code te sturen.
+Gebruik loops (for, while) om herhaalde acties uit te voeren.
+
+5. Debugging:
+Gebruik console.log() om waarden van variabelen te debuggen.
+Gebruik de browser debugger om de code stap voor stap uit te voeren.
