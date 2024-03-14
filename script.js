@@ -23,157 +23,164 @@ const myFavoriteFootballTeam = {
     },
     {
       name: "Danny Blind",
-      position: "verdediger",
+      position: "defender",
       number: 5,
       isCaptain: true,
       nickname: "De Kromme",
     },
     {
       name: "Finidi George",
-      position: "aanvaller",
+      position: "forward",
       number: 7,
       isCaptain: false,
       nickname: "De Fin",
     },
     {
       name: "Frank de Boer",
-      position: "verdediger",
+      position: "defender",
       number: 4,
       isCaptain: false,
       nickname: "De Kanon",
     },
     {
       name: "Ronald de Boer",
-      position: "middenvelder",
+      position: "midfielder",
       number: 6,
       isCaptain: false,
       nickname: "De Tweeling",
     },
     {
       name: "Clarence Seedorf",
-      position: "middenvelder",
+      position: "midfielder",
       number: 10,
       isCaptain: false,
       nickname: "De Generaal",
     },
     {
       name: "Edgar Davids",
-      position: "middenvelder",
+      position: "midfielder",
       number: 8,
       isCaptain: false,
       nickname: "De Pitbull",
     },
     {
       name: "Jari Litmanen",
-      position: "aanvaller",
+      position: "forward",
       number: 9,
       isCaptain: false,
       nickname: "The King",
     },
     {
       name: "Peter van Vossen",
-      position: "aanvaller",
+      position: "forward",
       number: 11,
       isCaptain: false,
       nickname: "De Vos",
     },
     {
       name: "Edwin van der Sar",
-      position: "doelman",
+      position: "goalkeeper",
       number: 1,
       isCaptain: false,
       nickname: "De Slang",
     },
     {
       name: "Fred Grim",
-      position: "doelman",
+      position: "goalkeeper",
       number: 28,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "Michael Reiziger",
-      position: "verdediger",
+      position: "defender",
       number: 2,
       isCaptain: false,
       nickname: "De Snelle",
     },
     {
       name: "Sonny Silooy",
-      position: "middenvelder",
+      position: "midfielder",
       number: 3,
       isCaptain: false,
       nickname: "De Mister",
     },
     {
       name: "Winston Bogarde",
-      position: "verdediger",
+      position: "defender",
       number: 12,
       isCaptain: false,
       nickname: "De Stopper",
     },
     {
       name: "Nwankwo Kanu",
-      position: "aanvaller",
+      position: "forward",
       number: 14,
       isCaptain: false,
       nickname: "Papilo",
     },
     {
       name: "Michel Kreek",
-      position: "verdediger",
+      position: "defender",
       number: 16,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "Nordin Wooter",
-      position: "verdediger",
+      position: "defender",
       number: 22,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "Marc Overmars",
-      position: "aanvaller",
+      position: "forward",
       number: 17,
       isCaptain: false,
       nickname: "De Storm",
     },
     {
       name: "Tarik Oulida",
-      position: "aanvaller",
+      position: "forward",
       number: 21,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "Richard Witschge",
-      position: "middenvelder",
+      position: "midfielder",
       number: 18,
       isCaptain: false,
       nickname: "De Maestro",
     },
     {
       name: "Martijn Reuser",
-      position: "middenvelder",
+      position: "midfielder",
       number: 19,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "Frank Rijkaard",
-      position: "middenvelder",
+      position: "midfielder",
       number: 8,
       isCaptain: false,
       nickname: "De Keizer",
     },
     {
       name: "Kiki Musampa",
-      position: "middenvelder",
+      position: "midfielder",
       number: 27,
       isCaptain: false,
+      nickname: null,
     },
     {
       name: "John van den Brom",
-      position: "middenvelder",
+      position: "midfielder",
       number: 24,
       isCaptain: false,
+      nickname: null,
     },
   ],
 };
@@ -194,15 +201,48 @@ headCoach.textContent = coachName;
 const setPlayerCards = (arr = players) => {
   // Map through arr and store name, position etc of each player in a variable:
   playerCards.innerHTML += arr
-    .map(({ name, position, number, isCaptain, nickname }) => {
-      // Display these variables inside the playercards:
-      `<div class="player-card">
+    .map(
+      ({ name, position, number, isCaptain, nickname }) =>
+        `
+      <div class="player-card">
         <h2>${name} ${isCaptain ? "(Captain)" : ""}</h2>
         <p>Position: ${position}</p>
         <p>Number: ${number}</p>
-        <p>Nickname: ${nickname ? nickname : "N/A"} </p>
-      </div>`;
-    })
+        <p>Nickname: ${nickname !== null ? nickname : "N/A"}</p>
+      </div>
+    `
+    )
     // Remove commas between each player-card:
     .join("");
 };
+
+// Detect user input (e represents an object which contains information for the event):
+playersDropdownList.addEventListener("change", (e) => {
+  playerCards.innerHTML = "";
+
+  switch (e.target.value) {
+    case "nickname":
+      setPlayerCards(players.filter((player) => player.nickname !== null));
+      break;
+    case "forward":
+      setPlayerCards(players.filter((player) => player.position === "forward"));
+      break;
+    case "midfielder":
+      setPlayerCards(
+        players.filter((player) => player.position === "midfielder")
+      );
+      break;
+    case "defender":
+      setPlayerCards(
+        players.filter((player) => player.position === "defender")
+      );
+      break;
+    case "goalkeeper":
+      setPlayerCards(
+        players.filter((player) => player.position === "goalkeeper")
+      );
+      break;
+    default:
+      setPlayerCards();
+  }
+});
